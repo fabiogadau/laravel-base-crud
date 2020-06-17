@@ -1,4 +1,4 @@
-<h1>Esercizio di oggi: <strong>Intro ORM, Model e Eloquent</strong></h1>
+<h2>Esercizio di oggi: <strong>Intro ORM, Model e Eloquent</strong></h2>
 <h3>Descrizione:</h3>
 <ul>
    <li>
@@ -18,5 +18,36 @@
    </li>
    <li>
       Provate poi a fare le queries al DB usando Eloquent e il model Student all’interno di un controller creato da voi, sperimentando all(), where(), OrderBy(), get(), limit(), first(), find()
+   </li>
+</ul>
+
+<hr>
+
+<h2>Esercizio di oggi: <strong>Laravel CRUD parte 1</strong></h2>
+<h3>Descrizione (scegliere un tipo di entità che più preferite ed eseguire le operazioni CRUD viste stamattina in lezione):</h3>
+<ul>
+   <li>
+      Gestite la migration per la tabella dell’entità che avete scelto
+   </li>
+   <li>
+      Gestire il model per l’entità (ricordate $fillables)
+   </li>
+   <li>
+      Definite una Route::resource() per la vostra entità
+   </li>
+   <li>
+      Definite un Resource Controller con --resource
+   </li>
+   <li>
+      Creare una index per la vostra entità
+   </li>
+   <li>
+      Creare una create per la vostra entità
+   </li>
+   <li>
+      Gestire lo store della vostra entità
+   </li>
+   <li>
+      Creare la show per la vostra entità
    </li>
 </ul>
