@@ -7,8 +7,8 @@ use App\Movie;
 
 class HomeController extends Controller
 {
-    public function index(){
-
+    public function index()
+    {   
         // Movies DB
         $movies = Movie::all();
         

@@ -16,7 +16,13 @@
             <div class="nav-brand">
                <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                     <a href="" class="nav-link text-dark font-weight-bold">Home</a>
+                     <a href="{{ route('home') }}" class="nav-link text-dark font-weight-bold">Home</a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="{{ route('movies.create') }}" class="nav-link text-dark font-weight-bold">Add movies</a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="{{ route('movies.index') }}" class="nav-link text-dark font-weight-bold">Movie DB</a>
                   </li>
                </ul>
             </div>
