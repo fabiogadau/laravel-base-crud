@@ -30,7 +30,7 @@
       Gestite la migration per la tabella dell’entità che avete scelto
    </li>
    <li>
-      Gestire il model per l’entità (ricordate $fillables)
+      Gestire il model per l’entità (ricordate $fillable)
    </li>
    <li>
       Definite una Route::resource() per la vostra entità
@@ -49,5 +49,21 @@
    </li>
    <li>
       Creare la show per la vostra entità
+   </li>
+</ul>
+
+<hr>
+
+<h2>Esercizio di oggi: <strong>Laravel CRUD parte 2</strong></h2>
+<h3>Descrizione (continuare a lavorare sull’esercizio di ieri completando le operazioni di CRUD):</h3>
+<ul>
+   <li>
+      Edit
+   </li>
+   <li>
+      Update
+   </li>
+   <li>
+      Delete
    </li>
 </ul>
