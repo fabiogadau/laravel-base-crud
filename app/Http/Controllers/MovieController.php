@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie;
+use Illuminate\Validation\Rule;
 
 class MovieController extends Controller
 {
@@ -18,7 +19,7 @@ class MovieController extends Controller
         $movies = Movie::all();
         
         // Return Movies Index
-        return view('movies/index', compact('movies'));
+        return view('movies.index', compact('movies'));
     }
 
     /**
@@ -44,19 +45,20 @@ class MovieController extends Controller
         $data = $request->all();
 
         // Validation
-        $request->validate([
-            'title' => 'required|unique:movies|max:100',
-            'genre' => 'required|max:50',
-            'description' => 'required|unique:movies|max:65000',
-            'release_date' => 'required'
-        ]);
+        $request->validate($this->validationRules());
 
-        // Save new classroom on database
+        /* Save new movie on database */
+        // Create new movie
         $movie = new Movie();
-        $movie->title = $data['title'];
-        $movie->genre = $data['genre'];
-        $movie->description = $data['description'];
-        $movie->release_date = $data['release_date'];
+
+        // Populate new movie
+        //$movie->title = $data['title'];
+        //$movie->genre = $data['genre'];
+        //$movie->description = $data['description'];
+        //$movie->release_date = $data['release_date'];
+        $movie->fill($data);
+
+        // Save new movie on database
         $saved = $movie->save();
 
         // Redirect to Movies Show
@@ -74,7 +76,7 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        // Return Movies Show of single movie
+        // Return Movies Show of single movie by id
         return view('movies.show', compact('movie'));
     }
 
@@ -84,9 +86,11 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(/*$id*/ Movie $movie)
     {
-        //
+        //$movie = Movie::find($id);
+        // Return Movies Edit of single movie by id
+        return view('movies.edit', compact('movie'));
     }
 
     /**
@@ -96,9 +100,21 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Movie $movie)
     {
-        //
+        // Get data from form
+        $data = $request->all();
+
+        // Validation
+        $request->validate($this->validationRules($movie->id));
+
+        // Update movie
+        $updated = $movie->update($data);
+
+        // Redirect to Movies Show
+        if ($updated){
+            return redirect()->route('movies.show', $movie->id);
+        }
     }
 
     /**
@@ -107,8 +123,36 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Movie $movie)
     {
-        //
+        // Reference for movie to delete
+        $ref = $movie->title;
+
+        // Delete movie
+        $deleted = $movie->delete();
+
+        // Redirect with session data
+        if ($deleted){
+            return redirect()->route('movies.index')->with('deleted', $ref);
+        }
+    }
+
+    // Define validation rules
+    private function validationRules($id = null){
+        return [
+            //'title' => 'required|unique:movies|max:100',
+            'title' => [
+                'required',
+                Rule::unique('movies')->ignore($id),
+                'max:100'
+            ],
+            'genre' => 'required|max:50',
+            'description' => [
+                'required',
+                Rule::unique('movies')->ignore($id),
+                'max:65000'
+            ],
+            'release_date' => 'required'
+        ];
     }
 }
