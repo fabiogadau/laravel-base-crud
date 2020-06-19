@@ -67,3 +67,13 @@
       Delete
    </li>
 </ul>
+
+<hr>
+
+<h2>Esercizio di oggi: <strong>Laravel Seeders</strong></h2>
+<h3>Descrizione:</h3>
+<ul>
+   <li>
+      Scegliete due nuove entità DB, create le opportune migrazioni per queste due entità e dopo di che provate a creare i seeders per popolare con dati fake, come fatto questa mattina in classe.
+   </li>
+</ul>
