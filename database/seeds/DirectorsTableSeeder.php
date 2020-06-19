@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 use App\Director;
 use Faker\Generator as Faker;
-use Illuminate\Support\Str;
 
 class DirectorsTableSeeder extends Seeder
 {
@@ -20,7 +19,6 @@ class DirectorsTableSeeder extends Seeder
         // For loop to generate fake data
         for ($i = 0; $i < $records; $i++){ 
             $newDirector = new Director();
-            
 
             $newDirector->full_name = $faker->name('male'|'female');
             $newDirector->nationality = $faker->state;
